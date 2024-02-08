@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Snippets</title>
+</head>
+<body>
+    <h1>Snippets</h1>
+    <% snippets.forEach(function(snippet) { %>
+        <div>
+            <h2><%= snippet.title %></h2>
+            <p><%= snippet.content %></p>
+            <small>Author: <%= snippet.author %></small>
+        </div>
+    <% }) %>
+</body>
+</html>

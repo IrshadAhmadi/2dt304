@@ -1,46 +1,50 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const session = require("express-session");
-const flash = require("connect-flash");
-const path = require("path");
-const app = express();
+const express = require('express')
+const mongoose = require('mongoose')
+const session = require('express-session')
+const flash = require('connect-flash')
+const path = require('path')
+const bodyParser = require('body-parser')
+const app = express()
 
-mongoose
-  .connect("mongodb://localhost:27017/crud")
-  .then(() => console.log("server Connected"))
-  .catch((err) => console.log(err));
+// Database Connection
+mongoose.connect('mongodb://localhost:27017/crud')
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.error('MongoDB connection error:', err))
 
-// EJS for view templates
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "src", "front", "views"));
+// Middleware Setup
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: false,
+  cookie: { secure: process.env.NODE_ENV === 'production' }
+}))
+app.use(flash())
 
-app.use(express.urlencoded({ extended: false }));
-
-// Express Session
-app.use(
-  session({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-
-// Connect Flash
-app.use(flash());
-
-// Global variables for flash messages
+// Global Variables for Flash Messages
 app.use((req, res, next) => {
-  res.locals.success_msg = req.flash("success_msg");
-  res.locals.error_msg = req.flash("error_msg");
-  next();
-});
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.error_msg = req.flash('error_msg')
+  next()
+})
 
-app.use(express.static(path.join(__dirname, "public")));
+// View Engine Setup
+app.set('view engine', 'ejs')
+app.use(bodyParser.urlencoded({ extended: true }))
+app.set('views', path.join(__dirname, 'src', 'front', 'views'))
 
 // Routes
-app.use("/", require("./src/back/routes/index"));
-app.use('/users', require('./src/back/routes/users'));
-app.use("/snippets", require("./src/back/routes/snippets"))
+const indexRoutes = require('./src/back/routes/index')
+const userRoutes = require('./src/back/routes/users')
+const snippetRoutes = require('./src/back/routes/snippets')
+const dashboardRoutes = require('./src/back/routes/dashboardRoutes')
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+app.use('/', indexRoutes)
+app.use('/users', userRoutes)
+app.use('/snippets', snippetRoutes)
+app.use(dashboardRoutes)
+
+// Server Initialization
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
