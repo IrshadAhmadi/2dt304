@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>List of Snippets</title>
+    <meta charset="UTF-8">
+    <title>Snippet List</title>
+    <!-- Include your CSS files here -->
 </head>
 <body>
-    <h1>Snippets</h1>
-    <% snippets.forEach(function(snippet) { %>
-        <div>
-            <h2><%= snippet.title %></h2>
-            <p><%= snippet.content %></p>
-            <small>Author: <%= snippet.author %></small>
-        </div>
-    <% }) %>
+    <h1>Snippet List</h1>
+    <% if (snippets && snippets.length > 0) { %>
+        <% snippets.forEach(function(snippet) { %>
+            <div>
+                <h2><%= snippet.title %></h2>
+                <p><%= snippet.content %></p>
+                <p><%= snippet.author %></p>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>No snippets found.</p>
+    <% } %>
+    <button onclick="window.location.href='/snippets/new'">Create New Snippet</button>
 </body>
 </html>

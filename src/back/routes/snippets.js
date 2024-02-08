@@ -21,8 +21,13 @@ router.post('/', async (req, res) => {
 
 // list snippets
 router.get('/', async (req, res) => {
-  const snippets = await Snippet.find()
-  res.render('listSnippets', { snippets })
+  try {
+    const snippets = await Snippet.find().lean()
+    res.render('listSnippets', { snippets })
+  } catch (error) {
+    console.error(error)
+    res.status(500).render('error', { error })
+  }
 })
 
 module.exports = router
