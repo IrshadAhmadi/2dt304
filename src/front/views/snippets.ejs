@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snippets</title>
+</head>
+<body>
+    <h1>Snippets</h1>
+    <% if (snippets && snippets.length > 0) { %>
+        <% snippets.forEach(function(snippet) { %>
+            <div>
+                <h2><%= snippet.title %></h2>
+                <p><%= snippet.content %></p>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No snippets found</p>
+    <% } %>
+</body>
+</html>
