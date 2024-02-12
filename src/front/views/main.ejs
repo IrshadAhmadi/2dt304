@@ -11,17 +11,8 @@
         <% if (locals.success_msg) { %>
             <div class="alert alert-success"><%= success_msg %></div>
         <% } %>
-        <nav class="navbar">
-            <ul class="nav-links">
-                <% if (!locals.userId) { %>
-                    <li class="nav-item"><a href="/users/login">Login</a></li>
-                    <li class="nav-item"><a href="/users/register">Register</a></li>
-                <% } else { %>
-                    <li class="nav-item"><a href="/users/logout">Logout</a></li>
-                <% } %>
-                <li class="nav-item"><a href="/snippets">View Snippets</a></li>
-            </ul>
-        </nav>
+        <%- include('navbar', { user: user }) %>
+
     </div>
 </body>
 </html>
