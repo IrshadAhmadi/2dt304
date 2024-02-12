@@ -30,7 +30,7 @@
 }
 
 .btn-register {
-  background-color: #5cb85c;
+  background-color: #007bff;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -40,7 +40,7 @@
 }
 
 .btn-register:hover {
-  background-color: #4cae4c;
+  background-color: #131414;
 }
 .form-actions {
   display: flex;
@@ -59,12 +59,12 @@
 }
 
 .btn-back {
-  background-color: #b0f379;
+  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 .btn-back:hover {
-  background-color: #5a6268;
+  background-color: #131414;
 }
