@@ -34,7 +34,7 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'src', 'front', 'views'))
 
 // Routes
-const indexRoutes = require('./src/back/routes/index')
+const indexRoutes = require('./src/back/routes/main')
 const userRoutes = require('./src/back/routes/users')
 const snippetRoutes = require('./src/back/routes/snippets')
 const dashboardRoutes = require('./src/back/routes/dashboardRoutes')
