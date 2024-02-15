@@ -1,9 +1,10 @@
 <nav class="navbar">
   <ul class="nav-links">
     <li class="nav-item"><a href="/">Home</a></li>
+    <li class="nav-item"><a href="/snippets">View Snippets</a></li>
+    <li class="nav-item"><a href="/snippets/new">Create Snippet</a></li>
+
     <% if (user) { %>
-      <li class="nav-item"><a href="/snippets">View Snippets</a></li>
-      <li class="nav-item"><a href="/snippets/new">Create Snippet</a></li>
       <li class="nav-item"><a href="/users/logout">Logout</a></li>
       <li class="nav-item user-greeting">Logged in as: <%= user.username %></li>
     <% } else { %>

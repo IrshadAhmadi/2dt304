@@ -1,19 +1,11 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-form {
+.container-form {
+    max-width: 400px;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    margin-left: 750px;
 }
 
 h1 {
@@ -21,17 +13,21 @@ h1 {
 }
 
 input[type="text"],
-textarea {
+select,
+textarea,
+div[contenteditable="true"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
     border: 1px solid #ddd;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-textarea {
-    height: 100px;
+textarea,
+div[contenteditable="true"] {
+    min-height: 150px;
     resize: vertical;
 }
 
@@ -42,8 +38,23 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%;
 }
 
 button:hover {
     background-color: #4cae4c;
 }
+.hljs {
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+select {
+    margin-bottom: 20px;
+    background-color: #bbe4bb;
+    cursor: pointer;
+}
+#codeInput {
+    text-align: left;
+  }
