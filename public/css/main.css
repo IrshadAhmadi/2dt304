@@ -7,10 +7,14 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #fffefe;
+  background-image: url('../img/background2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .container {
-  width: 80%;
+  width: 100%;
   margin: auto;
   overflow: auto;
 }
@@ -46,7 +50,7 @@ h1 {
 }
 
 .nav-item a:hover {
-  color: #007bff;
+  color: #e61d1d;
   border-bottom: 3px solid #007bff;
 }
 

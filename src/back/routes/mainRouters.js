@@ -15,5 +15,7 @@ router.get('/snippets/new', ensureAuthenticated, snippetController.newSnippetFor
 router.post('/snippets', ensureAuthenticated, snippetController.createSnippet)
 router.get('/snippets', snippetController.listSnippets)
 router.post('/snippets/delete/:id', snippetController.deleteSnippet)
+router.get('/snippets/edit/:id', ensureAuthenticated, snippetController.editSnippetForm)
+router.post('/snippets/update/:id', ensureAuthenticated, snippetController.updateSnippet)
 
 module.exports = router

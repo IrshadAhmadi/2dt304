@@ -14,6 +14,7 @@
         <% if (snippets && snippets.length > 0) { %>
             <% snippets.forEach(function(snippet) { %>
                 <div class="snippet" id="snippet-<%= snippet._id %>">
+                    <a href="/snippets/edit/<%= snippet._id %>" class="btn edit-btn">Edit</a>
                     <button onclick="handleDelete('/snippets/delete/<%= snippet._id %>', '<%= snippet._id %>')" class="btn btn-danger delete-btn">Delete</button>
                     <h2><%= snippet.title %></h2>
                     <pre><code class="language-javascript"><%= snippet.content %></code></pre>
@@ -48,6 +49,26 @@
                 document.getElementById(`snippet-${snippetId}`).remove();
             } else {
                 alert('Failed to delete snippet.');
+            }
+        }
+    </script>
+    <script>
+        async function handleUpdate() {
+            const id = document.querySelector('input[name="id"]').value;
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const language = document.getElementById('language').value;
+            
+            const response = await fetch('/snippets/update/' + id, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, content, language })
+            });
+            
+            if (response.ok) {
+                window.location.href = '/snippets';
+            } else {
+                alert('Failed to update snippet.');
             }
         }
     </script>
