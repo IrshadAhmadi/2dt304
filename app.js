@@ -10,7 +10,7 @@ const { setupLocals } = require('./src/back/middlewares/auth')
 const app = express()
 
 // Database Connection
-mongoose.connect('mongodb://localhost:27017/crud')
+mongoose.connect('mongodb+srv://irshad:lnu123@cluster0.tlbsdjb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.error('MongoDB connection error:', err))
 
