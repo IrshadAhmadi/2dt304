@@ -38,6 +38,7 @@ exports.listSnippets = async (req, res) => {
     res.status(500).render('error', { message: 'Error fetching snippets.' })
   }
 }
+
 exports.deleteSnippet = async (req, res, next) => {
   try {
     const { id } = req.params
@@ -85,7 +86,6 @@ exports.editSnippetForm = async (req, res) => {
 exports.updateSnippet = async (req, res) => {
   const { title, content, language } = req.body
   const { id } = req.params
-
   try {
     const snippet = await Snippet.findById(id)
     if (!snippet) {

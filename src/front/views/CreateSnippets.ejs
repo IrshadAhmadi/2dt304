@@ -37,17 +37,17 @@
   
     <script>
         const codeInput = document.getElementById('codeInput');
-        const hiddenContent = document.getElementById('hiddenContent');
-        const languageSelector = document.getElementById('language');
+        const hiddenContent = document.getElementById('hiddenContent')
+        const languageSelector = document.getElementById('language')
     
         function applyHighlighting() {
-            codeInput.className = `hljs ${languageSelector.value}`;
+            codeInput.className = `hljs ${languageSelector.value}`
             hiddenContent.value = codeInput.innerText;
-            hljs.highlightElement(codeInput);
+            hljs.highlightElement(codeInput)
         }
         codeInput.addEventListener('input', applyHighlighting);
-        languageSelector.addEventListener('change', applyHighlighting);
-        applyHighlighting();
+        languageSelector.addEventListener('change', applyHighlighting)
+        applyHighlighting()
     </script>
 </body>
 </html>

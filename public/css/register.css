@@ -38,16 +38,6 @@
   cursor: pointer;
   width: 100%;
 }
-
-.btn-register:hover {
-  background-color: #131414;
-}
-.form-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .btn-register,
 .btn-back {
   text-decoration: none;
@@ -56,6 +46,15 @@
   text-align: center;
   display: inline-block;
   margin-top: 10px;
+}
+
+.btn-register:hover {
+  background-color: #131414;
+}
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .btn-back {

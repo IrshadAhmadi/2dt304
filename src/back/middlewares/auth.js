@@ -1,9 +1,9 @@
-// eslint-disable-next-line jsdoc/require-returns
 /**
- *
- * @param req
- * @param res
- * @param next
+ * Middleware to ensure a user is authenticated. If the user is authenticated,
+ * it proceeds to the next, otherwise, it responds with an error or redirects to the login page.
+ * @param {object} req - The request object.
+ * @param {object} res - The response object.
+ * @param {Function} next - The next middleware function in the stack.
  */
 function ensureAuthenticated (req, res, next) {
   if (req.session.userId) {
@@ -19,10 +19,11 @@ function ensureAuthenticated (req, res, next) {
 }
 
 /**
- *
- * @param req
- * @param res
- * @param next
+ * Middleware to set up local variables for use in views,
+ * It attaches flash messages and user information.
+ * @param {object} req - The request object.
+ * @param {object} res - The response object.
+ * @param {Function} next - The next middleware function in the stack.
  */
 function setupLocals (req, res, next) {
   res.locals.success_msg = req.flash('success_msg')
@@ -30,4 +31,5 @@ function setupLocals (req, res, next) {
   res.locals.user = req.session.user
   next()
 }
+
 module.exports = { ensureAuthenticated, setupLocals }
