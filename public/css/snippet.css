@@ -1,60 +1,68 @@
 .container-form {
-    max-width: 400px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-    margin-left: 750px;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: #f9f9f9;
 }
 
-h1 {
-    color: #333;
+.container-form input[type="text"],
+.container-form select,
+.container-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-input[type="text"],
-select,
-textarea,
-div[contenteditable="true"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+.container-form textarea {
+  height: 100px;
+  resize: vertical;
 }
 
-textarea,
-div[contenteditable="true"] {
-    min-height: 150px;
-    resize: vertical;
+.container-form .update-btn1 {
+  background-color: #0e0e0e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
 }
 
-button {
-    background-color: #5cb85c;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
+.container-form .hljs {
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
 }
 
-button:hover {
-    background-color: #4cae4c;
+.container-form select {
+  margin-bottom: 20px;
+  background-color: #252b25;
+  cursor: pointer;
+  color: white;
 }
-.hljs {
-    background: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
-    overflow-x: auto;
+
+.container-form #codeInput {
+  text-align: left;
 }
-select {
-    margin-bottom: 20px;
-    background-color: #bbe4bb;
-    cursor: pointer;
+.container-form .create-btn {
+  background-color: #000000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  transition: background-color 0.3s;
 }
-#codeInput {
-    text-align: left;
-  }
+
+.container-form .create-btn:hover {
+  background-color: #1a1f1b;
+}

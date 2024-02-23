@@ -14,7 +14,7 @@ router.post('/users/register', userController.registerUser)
 router.get('/snippets/new', ensureAuthenticated, snippetController.newSnippetForm)
 router.post('/snippets', ensureAuthenticated, snippetController.createSnippet)
 router.get('/snippets', snippetController.listSnippets)
-router.post('/snippets/delete/:id', snippetController.deleteSnippet)
+router.post('/snippets/delete/:id', ensureAuthenticated, snippetController.deleteSnippet)
 router.get('/snippets/edit/:id', ensureAuthenticated, snippetController.editSnippetForm)
 router.post('/snippets/update/:id', ensureAuthenticated, snippetController.updateSnippet)
 

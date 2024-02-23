@@ -1,50 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Notification Page</title>
-    <style>
-    .notification success {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-  }
-  
-  .notification error {
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-  }
-  
+<% if (success_msg.length > 0) { %>
+  <% success_msg.forEach(function(message) { %>
+    <div class="alert alert-success message"><%= message %></div>
+  <% }); %>
+<% } %>
 
-    </style>
-</head>
-<body>
-    <% if (success_msg) { %>
-        <div class="notification success">
-          <%= success_msg %>
-        </div>
-      <% } %>
-      
-      <% if (error_msg) { %>
-        <div class="notification error">
-          <%= error_msg %>
-        </div>
-      <% } %>
-      
-      <% if (info_msg) { %>
-        <div class="notification info">
-          <%= info_msg %>
-        </div>
-      <% } %>
-
-</body>
-</html>
+<% if (error_msg.length > 0) { %>
+  <% error_msg.forEach(function(message) { %>
+    <div class="alert alert-danger message"><%= message %></div>
+  <% }); %>
+<% } %>
+<script>
+  window.onload = function() {
+    var messages = document.querySelectorAll('.message')
+    messages.forEach(function(message) {
+      setTimeout(function() {
+        message.style.display = 'none'
+      }, 5000);
+    })
+  }
+</script>

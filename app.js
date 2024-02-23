@@ -5,6 +5,7 @@ const flash = require('connect-flash')
 const path = require('path')
 const methodOverride = require('method-override')
 const mainRouters = require('./src/back/routes/mainRouters')
+const { setupLocals } = require('./src/back/middlewares/auth')
 
 const app = express()
 
@@ -27,13 +28,9 @@ app.use(methodOverride('_method'))
 // View Engine Setup
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'src', 'front', 'views'))
+// console.log(__dirname)
 
-app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success_msg')
-  res.locals.error_msg = req.flash('error_msg')
-  res.locals.user = req.session.user
-  next()
-})
+app.use(setupLocals)
 
 // Routes
 app.use('/', mainRouters)

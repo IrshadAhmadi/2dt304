@@ -24,6 +24,7 @@ exports.loginUser = async (req, res, next) => {
     const user = await User.findOne({ username })
     if (user && bcrypt.compareSync(password, user.password)) {
       req.session.userId = user._id
+      req.flash('success_msg', 'You are successfully logged in.')
       res.redirect('/dashboard')
     } else {
       req.flash('error_msg', 'Invalid username or password')
@@ -55,11 +56,14 @@ exports.registerUser = async (req, res, next) => {
 
     const newUser = new User({ firstName, lastName, email, username, password })
     await newUser.save()
-    res.status(201).json({ message: 'User registered successfully' })
+    req.flash('success_msg', 'User registered successfully')
+    res.redirect('register')
+    // res.status(201).json({ message: 'User registered successfully' })
   } catch (error) {
     next(error)
   }
 }
+
 exports.showDashboard = async (req, res, next) => {
   try {
     const user = await User.findById(req.session.userId)
@@ -71,12 +75,13 @@ exports.showDashboard = async (req, res, next) => {
     next(error)
   }
 }
-exports.logoutUser = (req, res) => {
+
+exports.logoutUser = (req, res, next) => {
   req.session.destroy(err => {
     if (err) {
-      // eslint-disable-next-line no-undef
+      req.flash('error_msg', 'Error logging out')
       return next(err)
     }
-    res.redirect('/?logout=success')
+    res.redirect('/')
   })
 }
