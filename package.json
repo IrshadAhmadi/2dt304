@@ -18,7 +18,7 @@
     "test": "npm run lint",
     "clean": "rm -rf build/",
     "clean-all": "npm run clean && rm -rf node_modules/ && rm -f package-lock.json",
-    "start": "nodemon app.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -48,6 +48,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^8.1.1",
     "nodemon": "^3.0.3",
+    "socket.io": "^4.7.4",
     "uuid": "^9.0.1"
   }
 }

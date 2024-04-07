@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Data Dashboard</title>
+  <style>
+    body {
+      font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #c06c84, #6c5b7b, #355c7d);
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+    }
+    .top-bar {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px;
+      border-radius: 10px 10px 0 0;
+      color: #1d1d1f;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .container {
+      margin-top: 50px;
+      max-width: 800px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      background: #ffffff;
+      margin-bottom: 10px;
+      padding: 20px;
+      border-radius: 10px;
+      color: #333;
+    }
+    .sensor-data {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+    }
+    .sensor-data div {
+      flex: 1;
+      margin: 0 10px;
+    }
+    .sensor-data div span {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .timestamp {
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>Car Data Dashboard</h1>
+  </div>
+  <div class="container">
+    <ul id="carDataList">
+      <% carData.forEach(function(data) { %>
+        <li class="sensor-data">
+          <div><span>Type:</span> <%= data.type %></div>
+          <div><span>Height:</span> <%= data.height %> cm</div>
+          <% if (data.speed) { %>
+            <div><span>Speed:</span> <%= data.speed %> km/h</div>
+          <% } %>
+          <div><span>Vehicle</span> <%= data.carCount %></div>
+          <div class="timestamp"><span>Time:</span> <%= new Date(data.timestamp).toLocaleString() %></div>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('carData', function(data) {
+      console.log('New data received:', data);
+      const carDataList = document.getElementById('carDataList');
+      const li = document.createElement('li');
+      li.className = 'sensor-data';
+      li.innerHTML = `
+        <div><span>Type:</span> ${data.type}</div>
+        <div><span>Height:</span> ${data.height} cm</div>
+        ${data.speed ? `<div><span>Speed:</span> ${data.speed} km/h</div>` : ''}
+        <div><span>Vehicle:</span> ${data.carCount}</div>
+        <div class="timestamp"><span>Timestamp:</span> ${new Date(data.timestamp).toLocaleString()}</div>
+      `;
+      carDataList.insertBefore(li, carDataList.firstChild);
+    });
+  </script>
+</body>
+</html>
