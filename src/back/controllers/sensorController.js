@@ -4,7 +4,7 @@ const io = require('../models/io').getIO()
 exports.viewCarData = async (req, res) => {
   try {
     const carData = await CarData.find({})
-    console.log(carData) // Log to see what data is being passed to EJS
+    console.log(carData)
     res.render('sensorData', { carData })
   } catch (error) {
     console.error(error)
